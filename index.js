@@ -22,61 +22,147 @@ tabHeadingAll.forEach((h, i) => {
 
 
 
-// vars
-'use strict'
-var testim = document.getElementById("testim"),
-    testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
-    testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
-    testimleftArrow = document.getElementById("left-arrow"),
-    testimRightArrow = document.getElementById("right-arrow"),
-    testimSpeed = 4500,
-    currentSlide = 0,
-    currentActive = 0,
-    testimTimer
-    ;
-// coding with nick
-window.onload = function () {
 
-    // Testim Script
-    function playSlide(slide) {
-        for (var k = 0; k < testimDots.length; k++) {
-            testimContent[k].classList.remove("active");
-            testimContent[k].classList.remove("inactive");
-            testimDots[k].classList.remove("active");
-        }
-        if (slide < 0) {
-            slide = currentSlide = testimContent.length - 1;
-        }
-        if (slide > testimContent.length - 1) {
-            slide = currentSlide = 0;
-        }
-        if (currentActive != currentSlide) {
-            testimContent[currentActive].classList.add("inactive");
-        }
-        testimContent[slide].classList.add("active");
-        testimDots[slide].classList.add("active");
 
-        currentActive = currentSlide;
 
-        clearTimeout(testimTimer);
-        testimTimer = setTimeout(function () {
-            playSlide(currentSlide += 1);
-        }, testimSpeed)
-    }
-// coding with nick
-    testimleftArrow.addEventListener("click", function () {
-        playSlide(currentSlide -= 1);
-    })
-    testimRightArrow.addEventListener("click", function () {
-        playSlide(currentSlide += 1);
-    })
 
-    for (var l = 0; l < testimDots.length; l++) {
-        testimDots[l].addEventListener("click", function () {
-            playSlide(currentSlide = testimDots.indexOf(this));
-        })
-    }
-    playSlide(currentSlide);
 
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+===============================================================
+
+Hi! Welcome to my little playground!
+
+My name is Tobias Bogliolo. 'Open source' by default and always 'responsive',
+I'm a publicist, visual designer and frontend developer based in Barcelona. 
+
+Here you will find some of my personal experiments. Sometimes usefull,
+sometimes simply for fun. You are free to use them for whatever you want 
+but I would appreciate an attribution from my work. I hope you enjoy it.
+
+===============================================================
+*/
+$(document).ready(function(){
+
+    //Swipe speed:
+    var tolerance = 100; //px.
+    var speed = 650; //ms.
+  
+    //Elements:
+    var interactiveElements = $('input, button, a');
+    var itemsLength = $('.panel').length;
+    var active = 1;
+  
+    //Background images:
+    for (i=1; i<=itemsLength; i++){
+      var $layer = $(".panel:nth-child("+i+")");
+      var bgImg = $layer.attr("data-img");
+      $layer.css({
+        "background": "url("+bgImg+") no-repeat center / cover"
+      });
+    };
+  
+    //Transitions:
+    setTimeout(function() {
+      $(".panel").css({
+        "transition": "cubic-bezier(.4,.95,.5,1.5) "+speed+"ms"
+      });
+    }, 200);
+  
+    //Presets:
+    $(".panel:not(:first)").addClass("right");
+  
+    //Swipe:
+    function swipeScreen() {
+      $('.swipe').on('mousedown touchstart', function(e) {
+  
+        var touch = e.originalEvent.touches;
+        var start = touch ? touch[0].pageX : e.pageX;
+        var difference;
+  
+        $(this).on('mousemove touchmove', function(e) {
+          var contact = e.originalEvent.touches,
+          end = contact ? contact[0].pageX : e.pageX;
+          difference = end-start;
+        });
+  
+        //On touch end:
+        $(window).one('mouseup touchend', function(e) {
+          e.preventDefault();
+  
+          //Swipe right:
+          if (active < itemsLength && difference < -tolerance) {
+            $(".panel:nth-child("+active+")").addClass("left");
+            $(".panel:nth-child("+(active+1)+")").removeClass("right");
+            active += 1;
+            btnDisable();
+          };
+  
+          // Swipe left:
+          if (active > 1 && difference > tolerance) {
+            $(".panel:nth-child("+(active-1)+")").removeClass("left");
+            $(".panel:nth-child("+active+")").addClass("right");
+            active -= 1;
+            btnDisable();
+          };
+  
+          $('.swipe').off('mousemove touchmove');
+        });
+  
+      });
+    };
+    swipeScreen();
+  
+    //Prevent swipe on interactive elements:
+    interactiveElements.on('touchstart touchend touchup', function(e) {
+      e.stopPropagation();
+    });
+  
+    //Buttons:
+    $(".btn-prev").click(function(){
+      // Swipe left:
+      if (active > 1) {
+        $(".panel:nth-child("+(active-1)+")").removeClass("left");
+        $(".panel:nth-child("+active+")").addClass("right");
+        active -= 1;
+        btnDisable();
+      };
+    });
+  
+    $(".btn-next").click(function(){
+      //Swipe right:
+      if (active < itemsLength) {
+        $(".panel:nth-child("+active+")").addClass("left");
+        $(".panel:nth-child("+(active+1)+")").removeClass("right");
+        active += 1;
+        btnDisable();
+      };
+    });
+  
+    function btnDisable() {
+      if (active >= itemsLength) {
+        $(".btn-next").prop("disabled", true);
+        $(".btn-prev").prop("disabled", false);
+      }
+      else if (active <= 1) {
+        $(".btn-prev").prop("disabled", true);
+        $(".btn-next").prop("disabled", false);
+      }
+      else {
+        $(".btn-prev, .btn-next").prop("disabled", false);
+      };
+    };
+  
+  });
