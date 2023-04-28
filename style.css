@@ -24,45 +24,109 @@ body {
 }
 
 
-
-
-
-
-
 /* --------------------header----------------------- */
 
 .nav-brand img {
   width: 80px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 30px;
 }
 
 .head {
   display: flex;
+  padding: 0 1rem;
 }
 
 header {
-  padding-top: 15px;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background: whitesmoke;
-  padding-bottom: 15px;
+  padding: 1.4rem 1.5rem;
   flex-wrap: wrap;
 }
 
-.nav-name2 {
-  margin-left: 100px;
+.nav-main-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
 }
 
-.nav-main-name {
-  margin-top: 20px;
-  margin-left: 10px;
+.nav-name1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
+
+.nav-name1 h4 {
+  color: crimson;
+  letter-spacing: 1px;
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.5rem;
+}
+
+.nav-name1 p {
+  color: blue;
+}
+.nav-name2 {
+  font-size: 1rem;
+  padding: 0 .5rem;
+  text-align: center;
+}
+
+.nav-name2 {
+  color: #000;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.head-email p {
+  color: crimson;
+}
+
+.p-font {
+  font-family: 'Kanit', sans-serif;
+}
+
+.oswalt {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+}
+
+.kseeb {
+  color: blue;
+}
+
+
+.socials-email {
+  display: flex;
+  justify-content: space-between;
+  margin: .4rem 0;
+  width: inherit;
+  padding: 0 1rem;
+}
+
+.mail-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem 2rem;
+}
+
+.socials-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem 2rem;
+}
+
+
 
 .btn-1 {
-  background-color: #fff;
-  padding: 10px;
-  height: 50px;
-  border-radius: 100px;
+  padding: 3px 4px;
+  border-radius: 10px;
   color: rgb(48, 26, 128);
   margin-right: 15px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -94,9 +158,6 @@ header {
   color: #fff;
 }
 
-.btn-design {
-  height: 45px;
-}
 
 .btn-2 {
   border: none;
@@ -109,42 +170,12 @@ header {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-.head1 {
-  margin-right: 20px;
-}
-
-.head2 {
+/* .head2 {
   margin-right: 30px;
   display: flex;
-}
+} */
 
-.nav-name1 h4 {
-  color: crimson;
-  font-family: 'Kanit', sans-serif;
-  font-size: 20px;
-}
 
-.nav-name1 p {
-  color: blue;
-}
-
-.nav-name2 {
-  color: #000;
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-.head-email p {
-  color: crimson;
-}
-
-.p-font {
-  font-family: 'Kanit', sans-serif;
-}
-
-.oswalt {
-  font-family: 'Oswald', sans-serif;
-  font-size: 15px;
-}
 
 nav {
   /* background: #000; */
@@ -299,7 +330,11 @@ a {
 /* provides background color to body */
 .hero {
   background-color: whitesmoke;
-  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
 }
 
 /* ----- container stylings: 
@@ -518,28 +553,23 @@ to which the button is associated. */
   display: flex;
   flex-direction: column;
   background: rgb(250, 240, 225);
-  margin-left: 20px;
-  margin-top: 30px;
-  padding-top: 20px;
-  padding-right: 10px;
-  padding-left: 10px;
-  height: 540px;
+  border-radius: 10px;
+  padding: 1rem;
+  height: 100%;
+  width: 25%;
+}
+
+hr {
+  opacity: .1;
 }
 
 .hero-col-2 {
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 400px;
   background: whitesmoke;
-  padding-top: 60px;
-  /* padding-bottom: 20px; */
-  padding-right: 5px;
-  padding-left: 5px;
-  border-radius: 20px;
-  height: 200px;
+  padding: 2rem;
   font-family: 'Baloo Tamma 2', cursive;
-
 }
 
 .hero {
@@ -566,6 +596,17 @@ to which the button is associated. */
 .events {
   height: 280px;
   font-size: 15px;
+}
+
+.events-head {
+  font-size: 1.2rem;
+  padding: .5rem 0;
+}
+
+.events-event {
+  font-size: .9rem;
+  padding: .3rem 0;
+  color: rgb(212, 31, 188);
 }
 
 .container {
@@ -616,35 +657,47 @@ to which the button is associated. */
 
 
 /* ---------------tab section --------------- */
+
+.tab-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem 1rem;
+  min-height: 100vh;
+}
+
 .tabs-container,
 .tabs-container * {
   box-sizing: border-box;
 }
 
 .tabs-container {
-  width: 1250px;
-  height: 400px;
+  width: 90%;
+  height: 80vh;
+  padding: 1rem;
   font-family: "Roboto", sans-serif;
-  padding: 16px;
   background: #fff;
   color: #14213d;
   box-shadow: 0 5px 50px -8px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
 
-.tabs-container .tab-heading .icon svg {
+.tab-heading .icon svg {
   height: 30px;
 }
 
 .tabs-container .tab-heading-container {
   display: flex;
   background: whitesmoke;
-  margin: -16px;
   border-radius: 10px;
-  overflow: hidden;
 }
 
-.tabs-container .tab-heading {
+.tab-content-container{
+  height: inherit;
+  padding: 1rem;
+}
+
+ .tab-heading {
   padding: 12px 30px;
   cursor: pointer;
   color: #b52157;
@@ -658,20 +711,22 @@ to which the button is associated. */
 
 .tabs-container .tab-radio:nth-child(1):checked~.tab-heading-container .tab-heading:nth-child(1) {
   background: #1d3557;
+  border-radius: 10px;
 }
 
 .tabs-container .tab-radio:nth-child(2):checked~.tab-heading-container .tab-heading:nth-child(2) {
   background: #1d3557;
+  border-radius: 10px;
 }
 
 .tabs-container .tab-radio:nth-child(3):checked~.tab-heading-container .tab-heading:nth-child(3) {
   background: #1d3557;
+  border-radius: 10px;
 }
 
 .tabs-container .tab-content {
   display: none;
-  overflow-y: scroll;
-  height: 300px;
+  height: 100vh;
   margin-top: 24px;
 }
 
@@ -785,10 +840,6 @@ to which the button is associated. */
   }
 }
 
-.tab-section {
-  margin-top: 50px;
-}
-
 /* ----------------tab section--------------- */
 
 
@@ -809,7 +860,8 @@ to which the button is associated. */
 }
 
 .infrastructure {
-  height: 100%;
+  height: fit-content;
+  padding: 2.5rem 1rem 4rem;
   width: 100%;
   text-align: center;
   background: #f2f2f2;
